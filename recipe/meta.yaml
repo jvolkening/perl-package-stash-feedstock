@@ -4,15 +4,15 @@
 
 package:
   name: {{ name }}
-  version: {{ version }}
+  version: "{{ version }}"
 
 source:
   url: https://cpan.metacpan.org/authors/id/E/ET/ETHER/Package-Stash-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  skip: true   # [win]
-  number: 2
+  noarch: generic
+  number: 3
   run_exports:
     weak:
       - {{ name }} ={{ version }}
@@ -34,6 +34,8 @@ requirements:
     - perl-test-needs
   run:
     - perl
+    - perl-dist-checkconflicts
+    - perl-module-implementation
 
 test:
   imports:
@@ -43,9 +45,7 @@ test:
 about:
   home: https://github.com/moose/Package-Stash
   license: GPL-1.0-or-later OR Artistic-1.0-Perl
-  license_file:
-    - {{ environ["PREFIX"] }}/man/man1/perlartistic.1
-    - {{ environ["PREFIX"] }}/man/man1/perlgpl.1
+  license_file: LICENSE
   summary: 'Routines for manipulating stashes'
 
 extra:
